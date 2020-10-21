@@ -1,2 +1,7 @@
 # face_morphing
 This project is used for face transformation. The premise is that a pair of images need to be manually labeled with feature points, and the order of annotation points should be consistent. Then triangulation is used, and finally affine transformation is performed on the triangle region.
+1. Label a pair of images manually with labelme
+2.If the order of the annotation points is not consistent, it will lead to the disorder of the face region.
+3. Convert the JSON file generated after annotation into a TXT file, read the coordinates of the annotation points, and add the first column as the serial number at this time. The purpose of this is to unify the order of annotation, because subsequent triangulation requires one-to-one correspondence of triangle regions. Therefore, the first column in the txt file is the serial number, the second column is the x value of the annotation point, and the third column is the y value of the annotation point.
+4. The program reads the X and Y values in the txt file, uses the gettrianglelist() function to get the triangulated coordinate values, and then uses these coordinate values to retrieve the corresponding serial number of the txt file, and writes the serial number in the new and triangulated TXT file.
+5. Read the txt file of triangulation result, and carry out triangle affine transformation to get the transformed image, in which alpha is a scale coefficient. Adjust the proportion of the two images in the transformation results.
